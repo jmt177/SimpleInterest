@@ -18,11 +18,14 @@ import java.util.ArrayList;
 public class App {
     public static void main(String[] args){
         CreditCard person1Card1 = new Visa(100.00f);
-        Wallet person1Wallet = new Wallet(person1Card1);
-        Person person1 = new Person("George", "Koors", person1Wallet);
-        
+        CreditCard p1Card3 = new MC(128384.00f);
+        Person person1 = new Person("George", "Koors");
+        Wallet p1Wallet1 = new Wallet(person1Card1);
+        Wallet p1Wallet2 = new Wallet(p1Card3);
         CreditCard person1Card2 = new MC(1234.22f);
-        person1.addCardToWallet(person1Wallet, person1Card2);
+        person1.addWallet(p1Wallet2);
+        person1.addWallet(p1Wallet1);
+        person1.addCardToWallet(p1Wallet1, person1Card2);
         person1.showTotalBalance(person1.getWallets());
     }
 }

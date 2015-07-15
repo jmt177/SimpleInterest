@@ -19,11 +19,10 @@ public class Person implements Calculations{
     private String lastName;
     private ArrayList<Wallet> wallets;
 
-    public Person(String firstName, String lastName, Wallet wallet) {
+    public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         wallets = new ArrayList<Wallet>();
-        addWallet(wallet);
     }
     
     // functional methods
@@ -58,17 +57,15 @@ public class Person implements Calculations{
     @Override
     public float getTotalBalance(ArrayList<Wallet> wallets) {
         float totalBalance = 0.0f;
-        float totalInterest = 0.0f;
         // add from all wallets and cards
         for(int i = 0; i < wallets.size(); i++){
             Wallet curWallet = wallets.get(i);
             for(int j = 0; j < curWallet.getCards().size(); j++){
                 CreditCard curCard = curWallet.getCards().get(j);
-                totalBalance += curCard.getBalance();
-                totalInterest += curCard.calcInterest();
+                totalBalance += curCard.getBalance() + curCard.calcInterest();
             }
         }
-        return totalBalance + totalInterest;
+        return totalBalance;
     }
 
     @Override
