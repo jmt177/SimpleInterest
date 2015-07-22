@@ -5,6 +5,8 @@
  */
 package CreditCards;
 
+import Customers.Calculations;
+
 /**
  *
  * @author jtdollarsign
@@ -24,16 +26,16 @@ public abstract class CreditCard {
     }
 
     public float calcInterest(){
-        return this.getInterestRate() * this.getBalance();
+        return this.interestRate * this.balance;
+    }
+    
+    public float calcTotalBalance(){
+        return this.calcInterest() + this.balance;
     }
     
     // getters and setters
     public float getInterestRate() {
         return interestRate;
-    }
-
-    public void setInterestRate(float interestRate) {
-        this.interestRate = interestRate;
     }
 
     public float getBalance() {
