@@ -41,12 +41,11 @@ public class Person implements Calculations{
         float totalBalance = 0.0f;
         float totalInterest = 0.0f;
         // display total balance going through each wallet
-        for(int i = 0; i < wallets.size(); i++){
-            Wallet curWallet = wallets.get(i);
+        for (Wallet curWallet : wallets) {
             for(int j = 0; j < curWallet.getCards().size(); j++){
                 CreditCard curCard = curWallet.getCards().get(j);
                 System.out.println(curCard.getName() + " card has $" + curCard.getBalance()
-                                   + " with a total of $" + curCard.calcInterest() + " in interest");
+                        + " with a total of $" + curCard.calcInterest() + " in interest");
                 System.out.println("at a rate of " + curCard.getInterestRate());
                 totalBalance += curCard.getBalance();
                 totalInterest += curCard.calcInterest();
@@ -58,29 +57,26 @@ public class Person implements Calculations{
     public float getTotalBalance(ArrayList<Wallet> wallets) {
         float totalBalance = 0.0f;
         // add from all wallets and cards
-        for(int i = 0; i < wallets.size(); i++){
-            Wallet curWallet = wallets.get(i);
+        for (Wallet curWallet : wallets) {
             for(int j = 0; j < curWallet.getCards().size(); j++){
                 CreditCard curCard = curWallet.getCards().get(j);
-                totalBalance += curCard.getBalance() + curCard.calcInterest();
+                totalBalance += curCard.calcTotalBalance();
             }
         }
         return totalBalance;
     }
 
-    @Override
-    public float getCardBalance(CreditCard card) {
-        return card.getBalance();
-    }
-
-    @Override
-    public float getWalletBalance(Wallet wallet) {
-        float sum = 0.0f;
-        for(int i = 0; i < wallet.getCards().size(); i++){
-            sum += wallet.getCards().get(i).getBalance();
+    public float getTotalInterest(ArrayList<Wallet> wallets){
+        float totalInterest = 0.0f;
+        // add from all wallets and cards
+        for (Wallet curWallet : wallets) {
+            for(int j = 0; j < curWallet.getCards().size(); j++){
+                CreditCard curCard = curWallet.getCards().get(j);
+                totalInterest += curCard.calcInterest();
+            }
         }
-        return sum;
-    }    
+        return totalInterest;        
+    }
     
     // getters and setters. No setWallet
     public String getFirstName() {

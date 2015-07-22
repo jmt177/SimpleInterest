@@ -6,6 +6,7 @@
 package Wallets;
 
 import CreditCards.CreditCard;
+import CreditCards.Visa;
 import java.util.ArrayList;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -34,39 +35,40 @@ public class WalletTest {
      */
     @Test
     public void testAddCard() {
-        System.out.println("addCard");
-        CreditCard card = null;
-        Wallet instance = null;
-        instance.addCard(card);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("JUnit4 Test: Wallet.addCard");
+        CreditCard card = new Visa(100.00f);
+        Wallet wallet = new Wallet(card);
+        wallet.addCard(card);
+        assertTrue(wallet.getCards().get(0) == card);
     }
 
     /**
-     * Test of getCards method, of class Wallet.
+     * Test of walletInterest method, of class Wallet.
      */
     @Test
-    public void testGetCards() {
-        System.out.println("getCards");
-        Wallet instance = null;
-        ArrayList<CreditCard> expResult = null;
-        ArrayList<CreditCard> result = instance.getCards();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testWalletInterest() {
+        System.out.println("JUnit4 Test: Wallet.walletInterest");
+        CreditCard card = new Visa(100.00f);
+        CreditCard card2 = new Visa(100.00f);
+        Wallet wallet = new Wallet(card);
+        wallet.addCard(card2);
+        float expResult = 20.0F;
+        float result = wallet.walletInterest();
+        assertEquals(expResult, result, 0.0);
     }
 
     /**
-     * Test of setCards method, of class Wallet.
+     * Test of walletBalance method, of class Wallet.
      */
     @Test
-    public void testSetCards() {
-        System.out.println("setCards");
-        ArrayList<CreditCard> cards = null;
-        Wallet instance = null;
-        instance.setCards(cards);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testWalletBalance() {
+        System.out.println("JUnit4 Test: Wallet.walletBalance");
+        CreditCard card = new Visa(100.00f);
+        CreditCard card2 = new Visa(100.00f);        
+        Wallet instance = new Wallet(card);
+        instance.addCard(card2);
+        float expResult = 200.0F;
+        float result = instance.walletBalance();
+        assertEquals(expResult, result, 0.0);
     }
-    
 }

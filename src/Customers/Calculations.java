@@ -17,8 +17,4 @@ public interface Calculations {
     public void showTotalBalance(ArrayList<Wallet> wallets);
     
     public float getTotalBalance(ArrayList<Wallet> wallets);
-    
-    public float getCardBalance(CreditCard card);
-    
-    public float getWalletBalance(Wallet wallet);
 }

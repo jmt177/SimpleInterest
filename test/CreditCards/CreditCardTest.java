@@ -40,7 +40,7 @@ public class CreditCardTest {
 
     @Test
     public void testMC() {
-        System.out.println("JUnit4 Test: Discover.calcInterest():");
+        System.out.println("JUnit4 Test: MC.calcInterest():");
         CreditCard mcCard = new MC(100.00f);
         // these are the only actual calculations, other methods return an attribute
         assertEquals(0.05f * 100.00f, mcCard.calcInterest(), 0);
@@ -50,7 +50,7 @@ public class CreditCardTest {
 
     @Test
     public void testVisa() {
-        System.out.println("JUnit4 Test: Discover.calcInterest():");
+        System.out.println("JUnit4 Test: Visa.calcInterest():");
         CreditCard visaCard = new Visa(100.00f);
         // these are the only actual calculations, other methods return an attribute
         assertEquals(0.1f * 100.00f, visaCard.calcInterest(), 0);

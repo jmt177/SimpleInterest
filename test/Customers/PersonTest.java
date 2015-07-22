@@ -5,7 +5,8 @@
  */
 package Customers;
 
-import CreditCards.CreditCard;
+import CreditCards.*;
+
 import Wallets.Wallet;
 import java.util.ArrayList;
 import org.junit.AfterClass;
@@ -30,157 +31,96 @@ public class PersonTest {
     public static void tearDownClass() {
     }
 
-    /**
-     * Test of addWallet method, of class Person.
-     */
-    @Test
-    public void testAddWallet() {
-        System.out.println("addWallet");
-        Wallet wallet = null;
-        Person instance = null;
-        instance.addWallet(wallet);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
-     * Test of addCardToWallet method, of class Person.
+     * Test of Case One
+     * 1 person has 1 wallet and 3 cards (1 Visa, 1 MC 1 Discover) –
+     * Each Card has a balance of $100 – calculate the total interest
+     * (simple interest) for this person and per card.
      */
     @Test
-    public void testAddCardToWallet() {
-        System.out.println("addCardToWallet");
-        Wallet wallet = null;
-        CreditCard card = null;
-        Person instance = null;
-        instance.addCardToWallet(wallet, card);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of showTotalBalance method, of class Person.
-     */
-    @Test
-    public void testShowTotalBalance() {
-        System.out.println("showTotalBalance");
-        ArrayList<Wallet> wallets = null;
-        Person instance = null;
-        instance.showTotalBalance(wallets);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getTotalBalance method, of class Person.
-     */
-    @Test
-    public void testGetTotalBalance() {
-        System.out.println("getTotalBalance");
-        ArrayList<Wallet> wallets = null;
-        Person instance = null;
-        float expResult = 0.0F;
-        float result = instance.getTotalBalance(wallets);
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getCardBalance method, of class Person.
-     */
-    @Test
-    public void testGetCardBalance() {
-        System.out.println("getCardBalance");
-        CreditCard card = null;
-        Person instance = null;
-        float expResult = 0.0F;
-        float result = instance.getCardBalance(card);
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getWalletBalance method, of class Person.
-     */
-    @Test
-    public void testGetWalletBalance() {
-        System.out.println("getWalletBalance");
-        Wallet wallet = null;
-        Person instance = null;
-        float expResult = 0.0F;
-        float result = instance.getWalletBalance(wallet);
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getFirstName method, of class Person.
-     */
-    @Test
-    public void testGetFirstName() {
-        System.out.println("getFirstName");
-        Person instance = null;
-        String expResult = "";
-        String result = instance.getFirstName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setFirstName method, of class Person.
-     */
-    @Test
-    public void testSetFirstName() {
-        System.out.println("setFirstName");
-        String firstName = "";
-        Person instance = null;
-        instance.setFirstName(firstName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getLastName method, of class Person.
-     */
-    @Test
-    public void testGetLastName() {
-        System.out.println("getLastName");
-        Person instance = null;
-        String expResult = "";
-        String result = instance.getLastName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setLastName method, of class Person.
-     */
-    @Test
-    public void testSetLastName() {
-        System.out.println("setLastName");
-        String lastName = "";
-        Person instance = null;
-        instance.setLastName(lastName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getWallets method, of class Person.
-     */
-    @Test
-    public void testGetWallets() {
-        System.out.println("getWallets");
-        Person instance = null;
-        ArrayList<Wallet> expResult = null;
-        ArrayList<Wallet> result = instance.getWallets();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCaseOne() {
+        System.out.println("JUnit4 Test: Case One");
+        CreditCard visaCard = new Visa(100.00F);
+        CreditCard mcCard = new MC(100.00F);
+        CreditCard discoverCard = new Discover(100.00F);
+        Wallet wallet = new Wallet(visaCard);
+        wallet.addCard(mcCard);
+        wallet.addCard(discoverCard);
+        ArrayList<Wallet> wallets = new ArrayList<>();
+        wallets.add(wallet);
+        Person person = new Person("John", "Smith");
+        float visaInterest = 10.0F;
+        float mcInterest = 5.0F;
+        float discoverInterest = 1.0F;
+        float totalInterest = 16.0F;
+        float result = person.getTotalInterest(wallets);
+        assertEquals(totalInterest, result, 0.0);
+        assertEquals(visaInterest, visaCard.calcInterest(), 0.0);
+        assertEquals(mcInterest, mcCard.calcInterest(), 0.0);        
+        assertEquals(discoverInterest, discoverCard.calcInterest(), 0.0);        
     }
     
+    /**
+     * 1 person has 2 wallets  Wallet 1 has a Visa and Discover, 
+     * wallet 2 a MC -  each card has $100 balance - calculate 
+     * the total interest(simple interest) for this person and interest per wallet
+     */
+    @Test
+    public void testCaseTwo() {
+        System.out.println("JUnit4 Test: Case Two");
+        CreditCard visaCard = new Visa(100.00F);
+        CreditCard mcCard = new MC(100.00F);
+        CreditCard discoverCard = new Discover(100.00F);
+        Wallet wallet1 = new Wallet(visaCard);
+        Wallet wallet2 = new Wallet(mcCard);
+        wallet1.addCard(discoverCard);
+
+        Person person = new Person("John", "Smith");
+        person.addWallet(wallet1);
+        person.addWallet(wallet2);
+      
+        float wallet1Interest = 11.0F;
+        float wallet2Interest = 5.0F;
+        float totalInterest = 16.0F;
+        float result = person.getTotalInterest(person.getWallets());
+        assertEquals(totalInterest, result, 0.0);
+        assertEquals(wallet1Interest, wallet1.walletInterest(), 0.0);
+        assertEquals(wallet2Interest, wallet2.walletInterest(), 0.0);        
+    }
+    
+    /**
+     * 2 people have 1 wallet each,  person 1 has 1 wallet , with 2 cards MC 
+     * and visa person 2 has 1 wallet – 1 visa and 1 MC -  each card has $100 
+     * balance - calculate the total interest(simple interest) for each person
+     * and interest per wallet
+     */
+    @Test
+    public void testCaseThree() {
+        System.out.println("JUnit4 Test: Case Three");
+        CreditCard p1VisaCard = new Visa(100.00F);
+        CreditCard p1mcCard = new MC(100.00F);
+        CreditCard p2VisaCard = new Visa(100.00F);
+        CreditCard p2mcCard = new MC(100.00F);
+        
+        Person person1 = new Person("John", "Smith");
+        Person person2 = new Person("Jane", "Doe");
+        
+        Wallet p1wallet = new Wallet(p1VisaCard);
+        p1wallet.addCard(p1mcCard);
+        person1.addWallet(p1wallet);
+        
+        Wallet p2wallet = new Wallet(p2mcCard);
+        p2wallet.addCard(p2VisaCard);
+        person2.addWallet(p2wallet);
+
+        float p1walletInterest = 15.0F;
+        float p2walletInterest = 15.0F;
+        float p1totalInterest = 15.0F;
+        float p2totalInterest = 15.0F;
+        assertEquals(p1totalInterest, person1.getTotalInterest(person1.getWallets()), 0.0);
+        assertEquals(p1walletInterest, person1.getWallets().get(0).walletInterest(),0.0);
+        assertEquals(p2totalInterest, person2.getTotalInterest(person2.getWallets()), 0.0);
+        assertEquals(p2walletInterest, person2.getWallets().get(0).walletInterest(),0.0);    
+    }    
 }

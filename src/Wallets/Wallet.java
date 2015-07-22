@@ -36,6 +36,22 @@ public class Wallet {
         this.getCards().add(card);
     }
     
+    public float walletInterest(){
+        float sum = 0;
+        for (CreditCard card : cards) {
+            sum += card.calcInterest();
+        }
+        return sum;
+    }
+    
+    public float walletBalance(){
+        float sum = 0;
+        for (CreditCard card : cards) {
+            sum += card.getBalance();
+        }
+        return sum;
+    }
+    
     // getters and setters
     public ArrayList<CreditCard> getCards() {
         return cards;
@@ -44,6 +60,7 @@ public class Wallet {
     public void setCards(ArrayList<CreditCard> cards) {
         this.cards = cards;
     }
+    
     
     
 }
