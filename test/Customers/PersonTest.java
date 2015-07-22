@@ -31,21 +31,6 @@ public class PersonTest {
     }
 
     /**
-     * Test of getTotalBalance method, of class Person.
-     */
-    @Test
-    public void testGetTotalBalance() {
-        System.out.println("getTotalBalance");
-        ArrayList<Wallet> wallets = null;
-        Person instance = null;
-        float expResult = 0.0F;
-        float result = instance.getTotalBalance(wallets);
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getTotalInterest method, of class Person.
      */
     @Test
