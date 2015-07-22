@@ -19,6 +19,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
     CreditCards.CreditCardTest.class,
     Wallets.WalletTest.class,
+    Customers.PersonTest.class,
     Customers.CasesTests.class    
 })
 public class SimpleInterestTestSuite {
